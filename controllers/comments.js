@@ -18,10 +18,22 @@ module.exports = {
       console.log(err);
     }
   },
+  deleteComment: async (req, res) => {
+    try {
+      await Comment.deleteOne({
+        _id: req.params.commentid
+      })
+      console.log("Comment deleted");
+      res.redirect("/post/"+req.params.postid)
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
 //   likeComment: async (req, res) => {
 //     try {
 //       await Comment.findOneAndUpdate(
-//         { post: req.params.id },
+//         { post: req.params.commentid },
 //         {
 //           $inc: { likes: 1 },
 //         }
